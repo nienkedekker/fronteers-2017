@@ -3,11 +3,18 @@ My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any 
 
 ---
 
+**Day 0**
 - [Val Head - The Web In motion](#val)
+
+**Day 1**
 - [Niels Leenheer - Don't Panic](#niels)
 - [Jessica Rose - Impostor Syndrome and Individual Competence](#jessica)
 - [Umar Hansa - A Modern Front-end Workflow](#umar)
 - [Yoav Weiss - Caching all the way down](#yoav)
+
+**Day 2**
+- Foo
+- Bar
 
 ---
 
