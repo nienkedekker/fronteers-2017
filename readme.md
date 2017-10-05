@@ -1,12 +1,15 @@
 ## Fronteers 2017
 My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any spelling mistakes, and any potential misinterpretations are all mine :)
 
+---
+
 - [Val Head - The Web In motion](#val)
 - [Niels Leenheer - Don't Panic](#niels)
 - [Jessica Rose - Impostor Syndrome and Individual Competence](#jessica)
 - [Umar Hansa - A Modern Front-end Workflow](#umar)
 - [Yoav Weiss - Caching all the way down](#yoav)
 
+---
 
 <a name="val"></a>
 ### Day 0: Workshop Val Head: The Web In Motion
@@ -89,7 +92,11 @@ Margin is a more expensive property to transform: it forces the browser to repai
 * https://www.udacity.com/course/browser-rendering-optimization--ud860
 * https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count
 
+---
+
 ### Day One
+
+---
 
 <a name="niels"></a>
 #### Niels Leenheer: Don't Panic
@@ -104,6 +111,9 @@ We're in the golden age of frontend development. The web has expanded to hundred
 Users over authors over implementors over specifiers over theoritical purity.
 
 Don't develop for browsers, develop for the web.
+
+---
+
 
 <a name="jessica"></a>
 #### Jessica Rose - Impostor Syndrome and Individual Competence
@@ -127,6 +137,8 @@ What if impostor syndrome is just your brain telling you in a terrible way that 
 
 * http://jangosteve.com/post/380926251/no-one-knows-what-theyre-doing
 
+---
+
 <a name="umar"></a>
 #### Umar Hansa - A Modern Front-end Workflow
 *The audience can expect to learn hidden DevTools secrets but also how to adopt a modern development and debugging workflow. This talk is important for any web developer who wants to understand and debug the internals of a webpage quickly and with ease.*
@@ -138,6 +150,8 @@ In DevTools: CMD+P for searching/screenshots.
 CSS Grid devtools are coming to Chrome!
 
 Cleaner logs with log management: console.context.
+
+---
 
 <a name="yoav"></a>
 #### Yoav Weiss - Caches all the way down
