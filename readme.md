@@ -1,6 +1,14 @@
 ## Fronteers 2017
 My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any spelling mistakes, and any potential misinterpretations are all mine :)
 
+- [Val Head - The Web In motion](#val)
+- [Niels Leenheer - Don't Panic](#niels)
+- [Jessica Rose - Impostor Syndrome and Individual Competence](#jessica)
+- [Umar Hansa - A Modern Front-end Workflow](#umar)
+- [Yoav Weiss - Caching all the way down](#yoav)
+
+
+<a name="val"></a>
 ### Day 0: Workshop Val Head: The Web In Motion
 *A full-day deep-dive into modern web animation techniques with one of the world’s pre-eminent experts. Val Head will guide you through the intricacies of animation on the Web, vitally focussing on CSS, JS and SVG. This essential training will provide you with a solid overview of the possibilities to help you and your team successfully leverage Web animation in your projects.*
 
@@ -80,3 +88,115 @@ Margin is a more expensive property to transform: it forces the browser to repai
 * https://dev.opera.com/articles/css-will-change-property/
 * https://www.udacity.com/course/browser-rendering-optimization--ud860
 * https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count
+
+### Day One
+
+<a name="niels"></a>
+#### Niels Leenheer: Don't Panic
+*10 years is a long time. You can change the world in less. So what have we done over the last decade? And more importantly, what lessons have we learned?*
+
+The web is truly a revolution of the people. We no longer need to be rocket surgeons to change the web. What have we done the last 10 years? Create the same Bootstrap websites, publishing on Medium, breaking the internet with butts. However, the web isn't dead or dying. It's evolving, and has always done so. It's changed, but mostly for the good.
+
+We're in the golden age of frontend development. The web has expanded to hundreds of new platforms (cars, consoles, et cetera). And almost everyone is always connected. Half the world's population is carrying a browser with them all the time. And browsers are mostly compatible these days. We no longer have to worry about IE quirks (most times). And the tools we have at our disposal are amazing. JS is no longer seen as a toy language. Frameworks come and go so fast they're easy to miss.
+
+* https://alistapart.com/article/slidingdoors
+
+Users over authors over implementors over specifiers over theoritical purity.
+
+Don't develop for browsers, develop for the web.
+
+<a name="jessica"></a>
+#### Jessica Rose - Impostor Syndrome and Individual Competence
+Our brains are terrible at self-assessment. This can be very demotivating. Your brain uses bad data to build worse conclusions that it becomes really attached to: enter impostor syndrome.
+
+If you're getting messages that you're not in a space that belongs to you, you internalize those.
+
+What is technology doing to impostor syndrome? Social media can make it worse. Technology invites us to compare our real lives to someone else's Best Of Hits.
+
+How can we make it better for others?
+- Never tell anyone else they have impostor syndrome. Don't override someone's concerns with just "oh, it's just impostor syndrome".
+- Give positive meaningful and actionable feedback.
+- Talk about your own feelings and fears when you feel comfortable doing so.
+
+Fixing it for yourself:
+- Take on positive feedback and accurately assess yourself: you can outsource the latter (tests, teaching, write articles).
+- Interrupt the "oh god they're going to find out" process. Check in with yourself periodically. Take care of yourself and do the thing that chills you out.
+- Keep track of what you learn over time, and look back periodically.
+
+What if impostor syndrome is just your brain telling you in a terrible way that you're actually doing fine?
+
+* http://jangosteve.com/post/380926251/no-one-knows-what-theyre-doing
+
+<a name="umar"></a>
+#### Umar Hansa - A Modern Front-end Workflow
+*The audience can expect to learn hidden DevTools secrets but also how to adopt a modern development and debugging workflow. This talk is important for any web developer who wants to understand and debug the internals of a webpage quickly and with ease.*
+
+* https://moderndevtools.com/
+
+In DevTools: CMD+P for searching/screenshots.
+
+CSS Grid devtools are coming to Chrome!
+
+Cleaner logs with log management: console.context.
+
+<a name="yoav"></a>
+#### Yoav Weiss - Caches all the way down
+*The fastest resource download is the one never made. Caching is a great way to ensure your content is positioned as close to your users as possible and that your repeat visitors get instant access to your content. Developers can impact the behavior of network and browser caches, improving content caching and ensuring it’s always as available as it can be, but caching semantics in HTTP can be confusing, which means that most content on the web today is not properly cached. Yoav Weiss explores HTTP cache semantics, strategies, browser internal caches, and service workers and explains how serve your content fast and fresh.*
+
+Cache: a hiding place for a computer program where they can keep data for later use. How does the computer decide when to invalidate this data? When do you evict data? You must be sure that data you'll put in, is more valuable the data that gets removed is less useful. How do you ensure you're serving fresh content?
+
+Cache invalidation is hard because you're basically having to predict the future.
+
+Despite the fact you can't always get it right, we use caching all the time.
+- L1 (0.5 nanosec)
+- L2
+- L3
+- RAM
+- SSD
+- HDD Seek
+- Network (150 millisec)
+
+Avoid fetching from disk or network, slow and unpredictable.
+
+If you reduce latency for each request, you'll exponentially speed up your application. As frontend devs, latency is our enemy and caching is our weapon.
+
+##### What does caching on the web look like?
+1. A request for a resource (script, image..) is created inside the rendering engine. A request can created in different ways: an API explicitly requests a resource, or a user just browses to a page and HTML must be loaded.
+2. It looks in the memory cache first (short-term memory cache) first. Once the render is destroyed, this short-term cache disappears. Memory cache is complex when it comes to request matching. It does not permit mixing of types, and requires strict type matching. There is also credential checking. At the same time, it does not enforce HTTP caching semantics. Even if the resource is non-cacheable, it can still be served as part of the memory cache. This is OK though, because the memory cache is volatile by nature.
+3. All this behaviour is in specs. We don't do a good job of really understanding it though.
+4. The request get passed along. It now appears in DevTools. It continues to the Service Worker. These have their own separate cache. They have an explicit cache with their own API. It's slightly unpredictable. It can return anything as a response, even create their own. This logic is created by the dev, not the browser.
+5. The first place to look for a resource is the http cache. It's very strict. But it can mix resource types, i.e. can return an image from a script request. It's persistent storage: data is stored to disk. So this can be quite slow compared to getting something from the memory cache.
+6. No response? Then we move on to the network. But before that, there is one more step: the push cache (H2 Push). Unclaimed streams as part of the H2 connection.
+7. Still nothing? We move on to the network. Latencies are dependent on many factors. ISP, edge, internet, reverse proxy..it's a scary place. Packet rates differ a lot. What can devs do to lower latency? This is where the edge cache comes in. By sitting as close as possible to your ISP's gateway, you don't have to travel as far for a resource.
+8. If the last line of caching does not work, we have the origin server. If the server does not have the resource, it'll return an error.
+
+
+The first thing to know about HTTP caching is that the resource URL is key. It's what used in the cache to find the request. If you request the same URL twice, the second request could get the response as a cached resource. A key concept is freshness: how long can a cache serve a resource without revalidating it? THis is where predicting the future part comes in. How do we define freshness?
+
+`Cache-Control: max-age=3600;`: we tell The Internet we're not going to change anything in the next hour. But what if we do change something? We'll risk serving outdated content to users.
+
+Validators are HTTP responses such as `Last-Modified` or `ETag`. This enables the browser to validate resources with conditionals such as `If-Modified-Since`. Super helpful, but still has a cost.
+
+Scope is another aspect of HTTP caching. Do we cache in the browser? On a public network? What do we do with private information? That's where `Cache-Control` directives come in too: `public`, `private`.
+
+Cachability directives can tell the cache whether the resource is cacheable or not. `must-revalidate` means the resource will not be revalidated as long as it's fresh, but must not be served stale. Usecase: only when the content you serve will really be invalid after the freshness runs out. `no-cache` will actually cache: but it won't serve resources from the cache, unless it's revalidated. With the directive `immutable`, even a hard refresh from the browser won't clear the cache.
+
+A related HTTP response header is `age`: how long has this resource been sitting in cache? `key` is a recent proposal that enables us to define more granular cache keys, ex. `Key: Width;partition=300:600:1200`.
+
+##### Caching best practices
+- Give your files a unique hash, and then make sure they never require validation. If you change the file, also change the hash.
+- For everything that is not immutable, serve it as either `no-cache` or `max-age=5`.
+- Everything else is a gamble: we can't predict the future. Anywhere between the above extremes is a bet..or is it?
+
+Enter CDNs: hold 'til told. Content is immutable at the edge, but it has some explicit directives that devs can access, so they can remove cache through an API call.
+
+Also, service workers to the rescue. Where do they live? Why is it faster than HTTP? It lives on disk, it's persistent. It lives closer to where the request is created. Most of the advantages aren't necessarily because it's faster, but because it's more reliable: you control the eviction and decide when a resource is important and should stay.
+
+* https://www.phpied.com/update-a-far-future-expiring-component/
+
+##### Take-aways
+- Caching is extremely important for performance.
+- It can be complex and daunting.
+- Browsers have a lot of internal caches. Browser caches are not all spec'ed.
+- HTTP caching pattern concepts: immutable content and always revalidate.
+- Service workers offer a lot of new opportunities here.
