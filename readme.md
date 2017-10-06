@@ -11,10 +11,11 @@ My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any 
 - [Jessica Rose - Impostor Syndrome and Individual Competence](#jessica)
 - [Umar Hansa - A Modern Front-end Workflow](#umar)
 - [Yoav Weiss - Caching all the way down](#yoav)
+- [Alice Boxhall - Debugging Accessibility](#alice)
 
 **Day 2**
-- Foo
-- Bar
+- [Alicia Sedlock - The Landscape of Front-End Testing](#alicia)
+-
 
 ---
 
@@ -107,17 +108,9 @@ Margin is a more expensive property to transform: it forces the browser to repai
 
 <a name="niels"></a>
 #### Niels Leenheer: Don't Panic
-*10 years is a long time. You can change the world in less. So what have we done over the last decade? And more importantly, what lessons have we learned?*
+> Users over authors over implementors over specifiers over theoritical purity.
 
-The web is truly a revolution of the people. We no longer need to be rocket surgeons to change the web. What have we done the last 10 years? Create the same Bootstrap websites, publishing on Medium, breaking the internet with butts. However, the web isn't dead or dying. It's evolving, and has always done so. It's changed, but mostly for the good.
-
-We're in the golden age of frontend development. The web has expanded to hundreds of new platforms (cars, consoles, et cetera). And almost everyone is always connected. Half the world's population is carrying a browser with them all the time. And browsers are mostly compatible these days. We no longer have to worry about IE quirks (most times). And the tools we have at our disposal are amazing. JS is no longer seen as a toy language. Frameworks come and go so fast they're easy to miss.
-
-* https://alistapart.com/article/slidingdoors
-
-Users over authors over implementors over specifiers over theoritical purity.
-
-Don't develop for browsers, develop for the web.
+> Don't develop for browsers, develop for the web.
 
 ---
 
@@ -213,11 +206,70 @@ Enter CDNs: hold 'til told. Content is immutable at the edge, but it has some ex
 
 Also, service workers to the rescue. Where do they live? Why is it faster than HTTP? It lives on disk, it's persistent. It lives closer to where the request is created. Most of the advantages aren't necessarily because it's faster, but because it's more reliable: you control the eviction and decide when a resource is important and should stay.
 
-* https://www.phpied.com/update-a-far-future-expiring-component/
-
 ##### Take-aways
 - Caching is extremely important for performance.
 - It can be complex and daunting.
 - Browsers have a lot of internal caches. Browser caches are not all spec'ed.
 - HTTP caching pattern concepts: immutable content and always revalidate.
 - Service workers offer a lot of new opportunities here.
+
+* https://www.phpied.com/update-a-far-future-expiring-component/
+
+___
+
+<a name="alice"></a>
+#### Alice Boxhall - Debugging Accessibility
+Disability is an interaction between a person's condition and their environment. The web is a visual and pointer-based medium. This can be disabling. Any user interface requires an ability from a user, to varying degrees. The less an interface requires of its user, the more accessible it is.
+
+- Perceivable
+    - Do you require your users to have perfect vision?
+- Operable
+    - Do you require your users to have perfect motor skills?
+- Understandable
+    - Do you require a high degree of language ability?
+- Robust
+    - Compatibility with current and future user agents.
+
+a11y experts understate the costs involved with creating robustness. a11y makes experiences better for everyone, but that is not always true for robustness. Not everyone gains something by a robust page.
+
+* https://www.ensie.nl/paul-van-den-dool/affordance
+
+(Some) disabled users interact with assistive technology, not with your UI. The assistive technology interacts with the UI.
+
+ARIA allows you to modify the semantic meaning of elements.
+
+---
+
+### Day Two
+
+---
+
+<a name="alicia"></a>
+#### Alice Sedhall - The Landscape of Front-End Testing
+
+Developers have a social responsibility. When we're putting people's medical and banking records on the web, we need to make sure we're accountable for the the code we write, and that this code is maintainable. This is where testing comes in. There are different types of frontend testing:
+
+1. Unit
+2. Integration
+3. Acceptance
+4. Visual regression
+5. Performance
+6. a11y
+
+Unit tests are for ensuring small pieces of code work as expected. Will a single function always produce the result we expect?
+
+Integration tests: how are pieces of an application working together? If you make changes to certain modules that other parts of your code are dependent on, an integration tests helps you to avoid breaking those other parts.
+
+Acceptance tests: make sure we can accomplish major tasks. We simulate user behavior and interact with our application, see what happens. Example: a user trying to sign up for something.
+
+* Unit testing tools: Jasmin, Mocha, Chai, Jest, QUnit, Unit.js, webdriver.io.
+* Integration and acceptance testing tools: jasmine-integration, Selenium, Nightwatch, Karma.
+
+As frontenders, we have an interface we can visually test. The latter three types of test are rising in popularity, especially visual regression testing. This will look for inconsistencies in the view: what has changed, and is the difference what you expected it to be? You can test full pages, or just components. You can set tolerances for changes ("alert us of any change, or only if it's moved by more than 5 pixels").
+
+a11y tests compare your site against a11y standards. They'll look at your code, and check if it's compliant with the standards. You can integrate these tests with Gulp or Webpack, or even run them through the CLI.
+
+Performance tests
+
+* Regression testing tools: Wraith, Casper (PhantomCSS), Percy, BackstopJS.
+* a11y tools: Pa11y, Chrome Accessibility Audit, a11y.
