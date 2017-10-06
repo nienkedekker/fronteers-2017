@@ -108,9 +108,7 @@ Margin is a more expensive property to transform: it forces the browser to repai
 
 <a name="niels"></a>
 #### Niels Leenheer: Don't Panic
-> Users over authors over implementors over specifiers over theoritical purity.
-
-> Don't develop for browsers, develop for the web.
+> Users over authors over implementors over specifiers over theoritical purity. Don't develop for browsers, develop for the web.
 
 ---
 
@@ -279,7 +277,7 @@ Monkey testing: test your app under stressful, chaotic conditions. Does the whol
 * Performance tools: perfbudget, gulp size, perf.js.
 * Monkey testing tools: Gremlins.js.
 
-When testing: focus on the areas that are mission critical, areas that have a history of being unstable. Don't write tests that take hours on something that's not that important.
+When testing: focus on the areas that are mission critical, areas that have a history of being unstable. 
 
 ___
 
@@ -364,7 +362,7 @@ JS shines with complex UI animation, animation with dynamic states and immersive
 
 SVG is image and code at the same time, it's artwork done in math! We can dig into the SVG DOM. It's great at:
 - Animated illustrations/icons
-- Infographics, data visualization 
+- Infographics, data visualization
 - Fluidly scaling, responsive animation
 - Squishy stuff
 - Tiny file sizes
