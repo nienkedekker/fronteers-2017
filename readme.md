@@ -16,7 +16,7 @@ My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any 
 **Day 2**
 - [Alicia Sedlock - The Landscape of Front-End Testing](#alicia)
 - [Ash Kyd - WebAssembly 101](#ash)
-
+- [Val Head - Choose Your Animation Adventure](#val)
 ---
 
 <a name="val"></a>
@@ -325,3 +325,60 @@ WebAssembly.instantiate(wasmCode, {/* imports */}).then(({instance}) => {
 * https://developer.mozilla.org/en-US/docs/WebAssembly
 * https://github.com/kripken/emscripten
 * https://github.com/dreamlayers/em-dosbox
+
+___
+
+<a name="val"></a>
+#### Val Head - Choose Your Animation Adventure
+You can animate with CSS, JS and SVG. CSS is a great place to start, it's sometimes the simplest answer to a problem.
+
+CSS is good at:
+- well-defined state transitions
+- loading/looping animations
+- animations on :hover, :focus, et cetera
+
+With CSS, you don't need external libraries, there is great potential for performance without much effort, and keyframes are reusable. Also, we can adjust properties in media queries easily for responsive animation. Despite all these pros, CSS has some cons as well. CSS has access to a limited number of events. It knows hover and focus, but doesn't know touch, drag, where your mouse is.. everything also needs to be defined entirely ahead of time, you can't have user-depending CSS. You can't separate transform properties (there is a proposal to separate these however!).
+
+CSS + JS = 👯💖 and is great for narratives, longer-running 'things'. JS can handle the logic part ("if this is clicked, do that"), CSS takes care of the actual motions. It's a good idea to move to JS when:
+
+- You'll be chaining more than 3 animations in a sequence
+- The animation needs to change dynamically at runtime (the animation depends on the current situation)
+- You need to animate transform properties separately
+- When physics or other complex easing structures are required.
+
+JavaScript is great at:
+- Complex animated interactions
+- Narrative or immersive animation
+- Dynamic state transitions
+- 1 stream of input, multiple elements that must respond to it? Go JS!
+
+When do we use vanilla JS, and when do we want an animation framework? One's not necessarily better than the other, but they produce different results.
+
+Vanilla JS -> `requestAnimationFrame`. Can get pretty involved, lots of details you have to take care of when your animation is complicated or big. This is where we have JS libraries, they can save a lot of time. There are tons of animation libraries (or even engines), a few examples are GreenSock, Velocity.js, and Anime.js. What do these have in common? Their syntaxes and patterns are similar. What do they do differently? Their filesizes are different, Anime.js is the smallest at 4.7kb.
+
+GreenSock is best if you have to support older browsers (IE6 even), and the documentation/community are big. Anime.js has docs, which are very nicely designed, but not super helpful.
+
+GS has also some extra features such as drawSVG, morphSVG and Draggable. Velocity.JS has a drop-in replacement for jQuery (great for replacing!). And Anime's big thing is how light-weight it is.
+
+JS shines with complex UI animation, animation with dynamic states and immersive animation. JS can animate DOM, SVG and Canvas.
+
+SVG is image and code at the same time, it's artwork done in math! We can dig into the SVG DOM. It's great at:
+- Animated illustrations/icons
+- Infographics, data visualization 
+- Fluidly scaling, responsive animation
+- Squishy stuff
+- Tiny file sizes
+
+How do you animate SVGs?
+
+With SMIL: tag-based animation with SVG. No IE or Edge support, and is being deprecated in Chrome.
+
+With CSS: transitions and keyframe animations can be applied to SVG elements. However, there is a limited number of properties that SVG exposes to CSS. And transforms are not supported in IE or Edge. Good for icons and smaller things: enhancements.
+
+With JS: can access/animate native SVG properties, and can do motion along paths, shape morphing, and access SVG attributes directly. Great for immersive animation. Also, it has the best browser support.
+
+* https://projects.lukehaas.me/css-loaders/
+* https://medium.com/bridge-collection/improve-the-payment-experience-with-animations-3d1b0a9b810e
+* https://developer.mozilla.org/nl/docs/Web/API/Window/requestAnimationFrame
+* https://github.com/bodymovin/bodymovin
+* https://airbnb.design/lottie/
