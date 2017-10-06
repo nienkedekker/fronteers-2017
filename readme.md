@@ -1,5 +1,5 @@
 ## Fronteers 2017
-My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any spelling mistakes, and any potential misinterpretations are all mine :)
+My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any spelling mistakes, and any misinterpretations are all mine :)
 
 ---
 
@@ -15,7 +15,7 @@ My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any 
 
 **Day 2**
 - [Alicia Sedlock - The Landscape of Front-End Testing](#alicia)
--
+- [Ash Kyd - WebAssembly 101](#ash)
 
 ---
 
@@ -255,6 +255,7 @@ Developers have a social responsibility. When we're putting people's medical and
 4. Visual regression
 5. Performance
 6. a11y
+7. Monkey testing
 
 Unit tests are for ensuring small pieces of code work as expected. Will a single function always produce the result we expect?
 
@@ -269,7 +270,58 @@ As frontenders, we have an interface we can visually test. The latter three type
 
 a11y tests compare your site against a11y standards. They'll look at your code, and check if it's compliant with the standards. You can integrate these tests with Gulp or Webpack, or even run them through the CLI.
 
-Performance tests
+Performance tests: keep your project honest about performance.
+
+Monkey testing: test your app under stressful, chaotic conditions. Does the whole thing fall apart, or does it hold up? We're not in control of these tests, we don't write them. Hit a button and hope for the best!
 
 * Regression testing tools: Wraith, Casper (PhantomCSS), Percy, BackstopJS.
 * a11y tools: Pa11y, Chrome Accessibility Audit, a11y.
+* Performance tools: perfbudget, gulp size, perf.js.
+* Monkey testing tools: Gremlins.js.
+
+When testing: focus on the areas that are mission critical, areas that have a history of being unstable. Don't write tests that take hours on something that's not that important.
+
+___
+
+<a name="ash"></a>
+#### Ash Kyd - WebAssembly 101
+*With competition between browser vendors heating up, Javascript performance has improved greatly over the past decade, but now WebAssembly is set to change the game. Introducing a new binary format that brings near-native speeds, WebAssembly is a completely different way of thinking about web development. So what does this mean for Javascript, security, and the web platform as a whole?*
+
+JS is the most popular language in the world. Instead of writing vanilla JS, we can use other tools (CoffeeScript, TypeScript, Babel..), which then compile to JS. You could say JS has become a compile target.
+
+How JS runs in the browser:
+- download script -> unzip -> parse JS -> optimize -> compile to machine code.
+
+Parse time is the slow part. It takes an iPhone 6S half a second parse a 1MB JS file. The older the device, the longer parsing takes. What if we can skip all this, and use wasm? It's a portable, binary format that runs on any platform, and it's size- and load-time efficient (not verbose). This is what a workflow would look like:
+
+- Write code (C, Rust) -> compile to wasm -> run wasm in browser.
+- How it runs in the browser: download binary -> compile to machine code. So no unzipping, parsing, or optimizing.
+
+Wasm is not a language, it's a compile target (like JS has become, but designed as such). Wasm is all about raw computing power, it has no DOM API access. Only 4 data types are supported, `int` and `float` in 32 and 64 bit. No strings, no objects. If you want to use different datatypes, you'd use wasm memory. That's how we share data.
+
+So what can we actually do? It's perfect if you're using binary data. As long as you have the bridge to JS for DOM access, you can basically do anything.
+
+* http://webassembly.org/docs/use-cases/
+
+From C:
+```
+#include <stdio.h>
+int main()
+{
+   printf("Hello, World!");
+}
+```
+
+To JS:
+```
+WebAssembly.instantiate(wasmCode, {/* imports */}).then(({instance}) => {
+  var memory = instance.exports.memory;
+  // call any exported function, e.g. instance.exports.main()
+  log(Object.keys(instance.exports));
+});
+```
+
+* https://mbebenita.github.io/WasmExplorer/
+* https://developer.mozilla.org/en-US/docs/WebAssembly
+* https://github.com/kripken/emscripten
+* https://github.com/dreamlayers/em-dosbox
