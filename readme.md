@@ -17,6 +17,7 @@ My notes on [Fronteers 2017](https://fronteers.nl/congres/2017). Don't mind any 
 - [Alicia Sedlock - The Landscape of Front-End Testing](#alicia)
 - [Ash Kyd - WebAssembly 101](#ash)
 - [Val Head - Choose Your Animation Adventure](#val)
+- [Monica Dinculescu - Emoji, Web Components, and Art](#monica)
 ---
 
 <a name="val"></a>
@@ -277,7 +278,7 @@ Monkey testing: test your app under stressful, chaotic conditions. Does the whol
 * Performance tools: perfbudget, gulp size, perf.js.
 * Monkey testing tools: Gremlins.js.
 
-When testing: focus on the areas that are mission critical, areas that have a history of being unstable. 
+When testing: focus on the areas that are mission critical, areas that have a history of being unstable.
 
 ___
 
@@ -367,7 +368,7 @@ SVG is image and code at the same time, it's artwork done in math! We can dig in
 - Squishy stuff
 - Tiny file sizes
 
-How do you animate SVGs?
+*How do you animate SVGs?*
 
 With SMIL: tag-based animation with SVG. No IE or Edge support, and is being deprecated in Chrome.
 
@@ -380,3 +381,15 @@ With JS: can access/animate native SVG properties, and can do motion along paths
 * https://developer.mozilla.org/nl/docs/Web/API/Window/requestAnimationFrame
 * https://github.com/bodymovin/bodymovin
 * https://airbnb.design/lottie/
+* https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API (don't use this in production yet)
+
+___
+
+#### Monica Dinculescu - Emoji, Web Components, and Art
+Art is hard. It takes a lot of time to get good at it, and there's no such thing as an instruction manual on how to produce art. But even when you're not 'good' at art, you can still have fun with it. Humans love making things, and the better tools they have access to, the easier creating art becomes (Instagram, coloring books). Web components help people make apps. Make things that make art, so others can make art too!
+
+* http://emoji.octopus.holdings/
+* https://make8bitart.com/
+* http://megamoji.muan.co/
+* https://meowni.ca/emojillate/
+* http://emojibrush.com/
